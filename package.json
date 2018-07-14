@@ -1,0 +1,17 @@
+{
+  "name": "front-end-basics",
+  "version": "1.0.0",
+  "description": "front-end-basics (JS, Browsersync)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "author": "Alexander Kovel",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^3.0.0"
+  }
+}
