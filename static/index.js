@@ -27,59 +27,73 @@ booksManadger = (books) =>{
            }
         }
         localStorage.setItem("countBook", countBook);
+        createdBlockCount();
         showBooks();
       }else{
         countBook = countBookLocalStorage;
+        createdBlockCount();
         showBooks();
       }
 
 
     function showBooks (){
-    left.innerHTML = "";
-    right.innerHTML = "";
-    
-    for(let i = 1; i <= countBook; i++){
-        let newBook = JSON.parse(localStorage.getItem(i)),
-            div = createNode('div'),
-            elementDOM = `
-            <div class="pic"><span><img src="${newBook.img}"></span></div>
-            <div class="title">
-                <span><b>Название:</b> "${newBook.name}"</span>
-                <span><b>Автор:</b> ${newBook.author}</span>
-            </div>`;
+        left.innerHTML = "";
+        right.innerHTML = "";
+        for(let i = 1; i <= countBook; i++){
+            let newBook = JSON.parse(localStorage.getItem(i)),
+                div = createNode('div'),
+                elementDOM = `
+                <div class="pic"><span><img src="${newBook.img}"></span></div>
+                <div class="title">
+                    <span><b>Название:</b> "${newBook.name}"</span>
+                    <span><b>Автор:</b> ${newBook.author}</span>
+                </div>`;
 
-        div.className = "item";  
-        div.innerHTML = elementDOM;
-        div.dataset.id = newBook.id;
+            div.className = "item";  
+            div.innerHTML = elementDOM;
+            div.dataset.id = newBook.id;
 
-        if(newBook.side == "left"){
-        div.insertAdjacentHTML("beforeEnd", `<div class="after"></div>`);
-        newBook.side = "left";
-        localStorage.setItem(newBook.id, JSON.stringify(newBook));
-        append(left, div);
-        }else if(newBook.side == "right"){
-        div.insertAdjacentHTML("beforeEnd", `<div class="before" onclick="moveToLeft(`+newBook.id+`)"></div>`);
-        newBook.side = "right";
-        localStorage.setItem(newBook.id, JSON.stringify(newBook));
-        append(right, div);
+            if(newBook.side == "left"){
+                div.insertAdjacentHTML("beforeEnd", `<div class="after"></div>`);
+                newBook.side = "left";
+                localStorage.setItem(newBook.id, JSON.stringify(newBook));
+                append(left, div);
+            }else if(newBook.side == "right"){
+                div.insertAdjacentHTML("beforeEnd", `<div class="before" onclick="moveToLeft(`+newBook.id+`)"></div>`);
+                newBook.side = "right";
+                localStorage.setItem(newBook.id, JSON.stringify(newBook));
+                append(right, div);
+            }
         }
-    }
     let buttonAfter = document.querySelectorAll('.after');
     buttonAfter.forEach((itemAfter) => itemAfter.addEventListener('click', moveToRight));
-    
+    counterBook();
     }
+
     moveToLeft=(indexBook)=>{
-    let findBook = JSON.parse(localStorage.getItem(indexBook));
-    (findBook.side == "right") ? findBook.side = "left" : findBook.side == "right";
-    localStorage.setItem(findBook.id, JSON.stringify(findBook));
-    showBooks();
+        let findBook = JSON.parse(localStorage.getItem(indexBook));
+        (findBook.side == "right") ? findBook.side = "left" : findBook.side == "right";
+        localStorage.setItem(findBook.id, JSON.stringify(findBook));
+        showBooks();
     }
     
     function moveToRight(e){
-    let findBook = JSON.parse(localStorage.getItem(e.target.parentNode.dataset.id));
-    (findBook.side == "left") ? findBook.side = "right" : findBook.side == "left";
-    localStorage.setItem(findBook.id, JSON.stringify(findBook));
-    showBooks();
+        let findBook = JSON.parse(localStorage.getItem(e.target.parentNode.dataset.id));
+        (findBook.side == "left") ? findBook.side = "right" : findBook.side == "left";
+        localStorage.setItem(findBook.id, JSON.stringify(findBook));
+        showBooks();
     }
+    function createdBlockCount(){
+        let content = document.querySelector('.content');
+        content.insertAdjacentHTML('beforeBegin', `<div class="counter"></div>`)
+    };
 
+    function counterBook(){
+        let buttonAfter = document.querySelectorAll('.after').length;
+        let buttonBefore = document.querySelectorAll('.before').length;
+        let counter = document.querySelector('.counter');
+        counter.innerHTML = "";
+        counter.innerHTML = `<span style="color: green; font-size: 1.5em; margin: 0 15px 0 15px;">Quantity of books (left side): ${buttonAfter} </span>
+                            <span style="color: red; font-size: 1.5em; margin: 0 15px 0 15px;">Quantity of books (right side): ${buttonBefore} </span>` 
+    }
 }
