@@ -7,8 +7,9 @@ Several quick start options are available:
 
 - [Download the latest release.](https://github.com/Magnum888/front-end-basics.zip)
 - Clone the repo: `git clone https://github.com/Magnum888/front-end-basics.git`
-- Install with [npm](https://www.npmjs.com/): `npm i`
+- IF you want to start server - Install with [npm](https://www.npmjs.com/): `npm i`
 - Open project(runing server) `npm run gulp`
+- If you entered command `npm run gulp` then server running https://front-end-basics.localtunnel.me or http://localhost:3000
 
 ## What's included
 

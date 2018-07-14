@@ -10,8 +10,8 @@ gulp.task('browser-sync', function() {
 			baseDir: '.'
 		},
 		notify: false,
-		// tunnel: true,
-		// tunnel: "front-end-basics", //Demonstration page: http://front-end-basics.localtunnel.me
+		tunnel: true,
+		tunnel: "front-end-basics", //Demonstration page: http://front-end-basics.localtunnel.me
 	});
 });
 
