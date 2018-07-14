@@ -68,4 +68,17 @@ booksManadger = (books) =>{
         buttonAfter.forEach((itemAfter) => itemAfter.addEventListener('click', moveToRight));
         
       }
+      moveToLeft=(indexBook)=>{
+        let findBook = JSON.parse(localStorage.getItem(indexBook));
+        (findBook.side == "right") ? findBook.side = "left" : findBook.side == "right";
+        localStorage.setItem(findBook.id, JSON.stringify(findBook));
+        showBooks();
+      }
+      
+      function moveToRight(e){
+        let findBook = JSON.parse(localStorage.getItem(e.target.parentNode.dataset.id));
+        (findBook.side == "left") ? findBook.side = "right" : findBook.side == "left";
+        localStorage.setItem(findBook.id, JSON.stringify(findBook));
+        showBooks();
+      }
 }
