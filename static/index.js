@@ -34,7 +34,11 @@ fetch("./static/data.json").then(response => {
       createdBlockCount();
       showBooks();
     }
-  
+
+    /**
+     * Main fanction. This function creted DOM Elements
+     */
+
     function showBooks (){
       left.innerHTML = "";
       right.innerHTML = "";
@@ -69,9 +73,11 @@ fetch("./static/data.json").then(response => {
       buttonAfter.forEach((itemAfter) => itemAfter.addEventListener('click', moveToRight));
       counterBook(); 
     }
+
     /*
      * moveToLeft => зробив щоб показати що можна було ще через onclick (але вбільшості роблю через addEventListener)
      */
+
     moveToLeft=(indexBook)=>{
       let findBook = JSON.parse(localStorage.getItem(indexBook));
       (findBook.side == "right") ? findBook.side = "left" : findBook.side == "right";
@@ -97,7 +103,7 @@ fetch("./static/data.json").then(response => {
       let counter = document.querySelector('.counter');
       counter.innerHTML = "";
       counter.innerHTML = `<span style="color: green; font-size: 1.5em; margin: 0 15px 0 15px;">Quantity of books (left side): ${buttonAfter} </span>
-                       <span style="color: red; font-size: 1.5em; margin: 0 15px 0 15px;">Quantity of books (right side): ${buttonBefore} </span>` 
+                           <span style="color: red; font-size: 1.5em; margin: 0 15px 0 15px;">Quantity of books (right side): ${buttonBefore} </span>` 
     }
     
     function searchInput(){
@@ -125,10 +131,10 @@ fetch("./static/data.json").then(response => {
       let bookSize = 0;
       for(let i =0; i<books.length; i++){
         if(books[i].style.display != 'none'){
-          bookSize = bookSize + 1;
+            bookSize = bookSize + 1;
         }
       }
       document.querySelector('.counter').innerHTML = `<span style="color: green; font-size: 1.5em;">Find books: ${bookSize}</span>`
     }
     
-  }
+}
