@@ -83,6 +83,7 @@ booksManadger = (books) =>{
         localStorage.setItem(findBook.id, JSON.stringify(findBook));
         showBooks();
     }
+
     function createdBlockCount(){
         let content = document.querySelector('.content');
         content.insertAdjacentHTML('beforeBegin', `<div class="counter"></div>`)
@@ -96,4 +97,5 @@ booksManadger = (books) =>{
         counter.innerHTML = `<span style="color: green; font-size: 1.5em; margin: 0 15px 0 15px;">Quantity of books (left side): ${buttonAfter} </span>
                             <span style="color: red; font-size: 1.5em; margin: 0 15px 0 15px;">Quantity of books (right side): ${buttonBefore} </span>` 
     }
+    
 }
